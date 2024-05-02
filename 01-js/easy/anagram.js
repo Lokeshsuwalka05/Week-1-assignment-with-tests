@@ -8,6 +8,29 @@
 */
 
 function isAnagram(str1, str2) {
+  let s=str1.toLowerCase();
+  let t=str2.toLowerCase();
+  
+  const mp=new Map();
+  if(s.length!=t.length){
+      return false;
+  }
+  for(const char of s){
+      mp.set(char,(mp.get(char)||0)+1);
+  }
+  for(const char of t){
+      if(!mp.has(char)){
+          return false;
+      }
+
+      mp.set(char,(mp.get(char))-1);
+  }
+  for(const [key,value] of mp){
+      if(value!=0){
+          return false;
+      }
+  }
+  return true;
 
 }
 
